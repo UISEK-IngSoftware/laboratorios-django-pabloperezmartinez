@@ -11,6 +11,23 @@
             <div class="bg-primary p-5 text-center">
                 <img src="{% static "logo.png" %}" alt="Pokemon logo" class="img-fluid">
             </div>
+            <nav class="navbar navbar-dark bg-primary">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="{% url "pokedex:index" %}" class="nav-link">Pokemons</a>
+                    </li>
+                    
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="{% url "logout" %}" class="nav-link">Cerrar sesión</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url "pokedex:login" %}" class="nav-link">Iniciar sesión</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
             {% block content %}{% endblock content %}
         </div>
     </body>
